@@ -980,15 +980,17 @@ function openMapViewer(){
     var ih=img.naturalHeight||img.height;
     var cw=container.clientWidth;
     var ch=container.clientHeight;
-    // 以容器高度為基準縮放，讓圖片比容器寬（可左右拖動）
-    var scale=Math.max(ch/ih, cw/iw)*1.0;
+    // 以容器高度為基準縮放，圖片會比容器寬，可左右拖動
+    var scale=ch/ih;
     var dispW=iw*scale;
     var dispH=ih*scale;
+    // 若縮放後寬度反而小於容器，改以寬度為基準再放大 1.5 倍
+    if(dispW<cw) { scale=(cw/iw)*1.5; dispW=iw*scale; dispH=ih*scale; }
     img.style.width=dispW+'px';
     img.style.height=dispH+'px';
-    // 初始置中
-    img.style.left=Math.min(0,Math.round((cw-dispW)/2))+'px';
-    img.style.top=Math.min(0,Math.round((ch-dispH)/2))+'px';
+    // 初始水平置中，垂直靠頂
+    img.style.left=Math.round((cw-dispW)/2)+'px';
+    img.style.top='0px';
     container._imgW=dispW;
     container._imgH=dispH;
   }
