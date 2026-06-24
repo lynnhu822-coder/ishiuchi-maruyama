@@ -237,6 +237,7 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 
 /* ══ CTA ══ */
 .cta-wrap{background:var(--ink-deep);padding:80px 60px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;}
+.cta-inner{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;z-index:1;}
 .cta-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 100%,rgba(200,218,234,.05) 0%,transparent 70%);pointer-events:none;}
 .cta-kicker{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:4px;color:rgba(200,218,234,.4);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
 .cta-kicker::before{content:'';width:18px;height:1px;background:var(--ice);opacity:.4;}
@@ -248,14 +249,14 @@ nav::before{content:'';position:absolute;inset:0;background:linear-gradient(to b
 .cta-btn-outline{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;background:transparent;color:rgba(245,243,239,.65);padding:15px 36px;text-decoration:none;text-align:center;transition:all .3s;border:2px solid rgba(245,243,239,.2);display:block;}
 .cta-btn-outline:hover{color:var(--snow);border-color:rgba(245,243,239,.5);}
 
-/* ══ STICKY PLANNER BAR ══ */
-.sticky-planner{position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(22,29,36,.97);backdrop-filter:blur(16px);border-top:1px solid rgba(200,218,234,.12);display:flex;align-items:center;justify-content:space-between;padding:10px 24px 10px 20px;padding-bottom:calc(10px + env(safe-area-inset-bottom));gap:12px;}
+/* ══ FLOATING MESSENGER ══ */
+.floating-messenger{position:fixed;bottom:28px;right:28px;z-index:500;background:#0084FF;border-radius:28px;display:flex;align-items:center;gap:10px;padding:13px 20px 13px 16px;box-shadow:0 4px 20px rgba(0,132,255,.5);text-decoration:none;transition:transform .3s,box-shadow .3s;}
+.floating-messenger:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,132,255,.65);}
+.fm-text{font-family:'Noto Sans TC',sans-serif;font-size:13px;letter-spacing:1px;color:#fff;}
 .sp-left{display:flex;align-items:center;gap:14px;flex:1;min-width:0;}
 .sp-label{font-size:13px;color:rgba(245,243,239,.65);letter-spacing:.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .sp-btn{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2.5px;background:var(--ice);color:var(--ink);border:none;padding:10px 20px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background .2s;}
 .sp-btn:hover{background:var(--snow);}
-.sp-messenger{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:#0084FF;border-radius:50%;flex-shrink:0;text-decoration:none;transition:background .2s;}
-.sp-messenger:hover{background:#006fd6;}
 
 /* ══ PLANNER OVERLAY ══ */
 .planner-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;backdrop-filter:blur(3px);}
@@ -346,6 +347,7 @@ footer{border-top:1px solid rgba(245,243,239,.07);padding:40px 60px;display:flex
   .beyond-section{padding:72px 0;}
   .nearby-grid{grid-template-columns:1fr;}
   .cta-wrap{grid-template-columns:1fr;padding:48px 24px;}
+  .cta-inner{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:24px;text-align:center;padding:32px 24px;}
   .footer-social{width:100%;justify-content:center;gap:12px;flex-wrap:nowrap;}
   .footer-social-link{font-size:11px;letter-spacing:.5px;}
@@ -558,14 +560,14 @@ footer{border-top:1px solid rgba(245,243,239,.07);padding:40px 60px;display:flex
 .resort-gallery-item:hover .gallery-zoom{opacity:1;}
 @media(hover:none){
   .gallery-zoom{opacity:.45;}
-  .mz-ring{width:60px;height:60px;}
+  .mz-ring{width:60px;height:60px;display:flex;align-items:center;justify-content:center;}
   .mz-ring svg{width:26px;height:26px;}
 }
 @media(max-width:768px){
   .panoramic-split{grid-template-columns:1fr;}
   .split-item{height:240px;}
   /* 手機：退化為上下 fade in */
-  .split-item.split-left,.split-item.split-right{transform:translateX(0);opacity:0;transition:opacity .85s ease;}
+  .split-item.split-left,.split-item.split-right{transform:translateX(0);opacity:0;transition:opacity .85s ease;transition-delay:0s !important;}
   .split-item.split-left.split-revealed,.split-item.split-right.split-revealed{opacity:1;}
   .resort-gallery-item img{height:240px !important;}
 }
@@ -880,7 +882,7 @@ footer{border-top:1px solid rgba(245,243,239,.07);padding:40px 60px;display:flex
   <div style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:320px;height:320px;border-radius:50%;border:1px solid rgba(212,245,60,.05);pointer-events:none;"></div>
   <!-- 左側黃色垂直線裝飾 -->
   <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--yellow);opacity:.7;pointer-events:none;"></div>
-  <div style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;z-index:1;">
+  <div class="cta-inner">
     <div>
       <p class="cta-kicker" style="color:var(--yellow);opacity:.9;">26/27 雪季開放報名中</p>
       <h2 class="cta-title">READY TO<br><span style="color:var(--yellow);">PUSH?</span></h2>
@@ -917,20 +919,17 @@ footer{border-top:1px solid rgba(245,243,239,.07);padding:40px 60px;display:flex
   </div>
 </footer>
 
-<div style="background:#1a1c1e;border-top:1px solid rgba(245,243,239,.06);padding:16px 48px calc(16px + 60px + env(safe-area-inset-bottom));text-align:center;font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:1px;color:rgba(245,243,239,.35);line-height:2;">
+<div style="background:#1a1c1e;border-top:1px solid rgba(245,243,239,.06);padding:16px 48px;text-align:center;font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:1px;color:rgba(245,243,239,.35);line-height:2;">
   © 2026 iSKI滑雪俱樂部 All rights reserved<br>
   <a href="/privacy-policy" target="_blank" style="color:rgba(245,243,239,.45);text-decoration:none;" onmouseover="this.style.color='rgba(245,243,239,.85)'" onmouseout="this.style.color='rgba(245,243,239,.45)'">隱私權政策</a>
   ｜
   <a href="/terms-of-service" target="_blank" style="color:rgba(245,243,239,.45);text-decoration:none;" onmouseover="this.style.color='rgba(245,243,239,.85)'" onmouseout="this.style.color='rgba(245,243,239,.45)'">網站服務條款</a>
 </div>
-<div class="sticky-planner" id="stickyPlanner" style="justify-content:flex-end;padding-right:20px;">
-  <a href="http://m.me/iSKIclub2019" target="_blank" class="sp-messenger" title="聯絡客服">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.883 1.308 5.465 3.374 7.234V22l3.079-1.688c.822.226 1.693.347 2.547.347 5.523 0 10-4.145 10-9.259C22 6.145 17.523 2 12 2zm1.007 12.464l-2.548-2.715-4.97 2.715 5.467-5.799 2.61 2.715 4.908-2.715-5.467 5.799z"/></svg>
-  </a>
-</div>
-
-<!-- PLANNER OVERLAY -->
-<!-- PLANNER BOTTOM SHEET -->
+<!-- FLOATING MESSENGER -->
+<a href="http://m.me/iSKIclub2019" target="_blank" class="floating-messenger" id="floatingMessenger" title="聯絡客服">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="flex-shrink:0;"><path d="M12 2C6.477 2 2 6.145 2 11.259c0 2.883 1.308 5.465 3.374 7.234V22l3.079-1.688c.822.226 1.693.347 2.547.347 5.523 0 10-4.145 10-9.259C22 6.145 17.523 2 12 2zm1.007 12.464l-2.548-2.715-4.97 2.715 5.467-5.799 2.61 2.715 4.908-2.715-5.467 5.799z"/></svg>
+  <span class="fm-text">聯絡客服</span>
+</a>
 
 <script>
 
@@ -1002,7 +1001,7 @@ document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
         right.classList.add('split-revealed');
       }
     });
-  },{threshold:0.15});
+  },{threshold:0.05});
   splitObs.observe(container);
 })();
 
