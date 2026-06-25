@@ -1096,20 +1096,12 @@ document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
     left.classList.add('split-revealed');
     right.classList.add('split-revealed');
   }
-  if(window.innerWidth<=768){
-    setTimeout(reveal,400);
-    return;
-  }
   var splitObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){splitObs.disconnect();reveal();}
     });
-  },{threshold:0.05,rootMargin:'0px 0px -10px 0px'});
+  },{threshold:0,rootMargin:'0px 0px -50px 0px'});
   splitObs.observe(container);
-  setTimeout(function(){
-    var rect=container.getBoundingClientRect();
-    if(rect.top<window.innerHeight&&rect.bottom>0){splitObs.disconnect();reveal();}
-  },300);
 })();
 
 // Gallery auto-scroll + drag + touch
