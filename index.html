@@ -1092,16 +1092,27 @@ document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
   var right=document.getElementById('splitRight');
   var container=document.getElementById('panoramicSplit');
   if(!left||!right||!container)return;
+  function reveal(){
+    left.classList.add('split-revealed');
+    right.classList.add('split-revealed');
+  }
   var splitObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
         splitObs.disconnect();
-        left.classList.add('split-revealed');
-        right.classList.add('split-revealed');
+        reveal();
       }
     });
-  },{threshold:0.05});
+  },{threshold:0.05,rootMargin:'0px 0px -10px 0px'});
   splitObs.observe(container);
+  // fallback：若元素已在 viewport 內，300ms 後直接觸發
+  setTimeout(function(){
+    var rect=container.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      splitObs.disconnect();
+      reveal();
+    }
+  },300);
 })();
 
 // Gallery auto-scroll + drag + touch
